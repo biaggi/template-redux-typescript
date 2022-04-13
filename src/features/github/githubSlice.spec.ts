@@ -5,7 +5,6 @@ import githubReducer, {
 } from "./githubSlice";
 
 import { store } from "../../app/store";
-import { assert } from "console";
 
 describe("counter reducer", () => {
   it("should handle initial state", () => {
