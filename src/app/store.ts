@@ -1,9 +1,11 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import counterReducer from '../features/counter/counterSlice';
+import githubReducer from '../features/github/githubSlice';
 
 export const store = configureStore({
   reducer: {
     counter: counterReducer,
+    github: githubReducer
   },
 });
 
@@ -15,3 +17,6 @@ export type AppThunk<ReturnType = void> = ThunkAction<
   unknown,
   Action<string>
 >;
+store.subscribe(() => {
+  console.log(store.getState());
+});
