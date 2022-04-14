@@ -17,6 +17,6 @@ export type AppThunk<ReturnType = void> = ThunkAction<
   unknown,
   Action<string>
 >;
-store.subscribe(() => {
-  //console.log(store.getState());
-});
+// store.subscribe(() => {
+//   console.log(store.getState());
+// });

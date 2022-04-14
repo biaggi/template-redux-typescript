@@ -1,7 +1,3 @@
-import { access } from "fs";
-import React, { useState } from "react";
-import { createBuilderStatusReporter } from "typescript";
-
 import { useAppSelector, useAppDispatch } from "../../../app/hooks";
 import {
   getLoginUrlAsync,
@@ -12,7 +8,7 @@ import {
 import styles from "./Home.module.css";
 
 export function Home() {
-  const { loginUrl, status, accessToken } = useAppSelector(selectGithub);
+  const { loginUrl, status, accessToken, user } = useAppSelector(selectGithub);
   const dispatch = useAppDispatch();
   //  const [incrementAmount, setIncrementAmount] = useState('2');
   let state = sessionStorage.getItem("state");
@@ -38,7 +34,7 @@ export function Home() {
       });
 
     const getItem = (item: string) => {
-      const param = bareParams.find((param) => param.key == item);
+      const param = bareParams.find((param) => param.key === item);
       return param ? param.value : undefined;
     };
     const code = getItem("code");
@@ -54,7 +50,7 @@ export function Home() {
   };
   
 
-  if (status == "idle") {
+  if (status === "idle") {
     if (!loginUrl) {
       dispatchToLogin();
     } else if (!accessToken) {
@@ -71,7 +67,7 @@ export function Home() {
   return (
     <div>
       <h1>Login page</h1>
-      <p>Welcome anonymous</p>
+      <p>Welcome {user && user.name ? user.name : 'anonymous'}</p>
 
       <section className="login">
         {loginUrl ? (

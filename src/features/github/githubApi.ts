@@ -19,7 +19,6 @@ export const CONSTANTS = {
 
 const authSecondStep = (code: string) => {
   const data = `code=${code}&client_id=${CONSTANTS.secrets.client_id}&client_secret=${CONSTANTS.secrets.client_secret}`;
-  
   return fetch(`${CONSTANTS.domains.authorization}/${CONSTANTS.uris.access_token}`, {
     headers: {
       accept: "application/json",

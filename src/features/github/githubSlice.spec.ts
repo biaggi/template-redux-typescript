@@ -8,7 +8,7 @@ import githubReducer, {
 
 import { store } from "../../app/store";
 
-import { getAuthServerMocks, accessTokenMock, getResourceServerMocks, userMock } from "./mocks";
+import { accessTokenMock, userMock, setupMocks } from "./mocks";
 
 function setupFetchStub(data: any) {
   return function fetchStub(
@@ -22,7 +22,8 @@ function setupFetchStub(data: any) {
 }
 
 describe("github reducer", () => {
-  beforeEach(() => {
+  afterAll(() => {
+    fetchMock.resetMocks();
   })
   it("should handle login url", () => {
     store.dispatch(getLoginUrlAsync("test")).then(() => {
@@ -32,7 +33,7 @@ describe("github reducer", () => {
   });
 
   it("should handle a code to get an access_token", (done) => {
-    getAuthServerMocks();
+    setupMocks();
     store
       .dispatch(
         getAuthSecondStepAsync({
@@ -47,7 +48,7 @@ describe("github reducer", () => {
       });
   });
   it("should handle an access_token to get a user", (done) => {
-    getResourceServerMocks();
+    setupMocks();
     store
       .dispatch(
         getUserAsync()

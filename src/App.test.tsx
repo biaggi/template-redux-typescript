@@ -8,6 +8,7 @@ import { screen } from "@testing-library/dom";
 // let container: Element | null = null;
 let root: Element | null = null;
 let reactDomRoot: ReactDOM.Root | null = null;
+import { setupMocks } from "./features/github/mocks";
 describe("App", () => {
   beforeEach(() => {
     // setup a DOM element as a render target
@@ -21,8 +22,10 @@ describe("App", () => {
     });
     if (root) root.remove();
     root = null;
+    fetchMock.mockRestore();
   });
   test("renders learn react link", async () => {
+    setupMocks();
     await act(async () => {
       if (root) {
         reactDomRoot = ReactDOM.createRoot(root);

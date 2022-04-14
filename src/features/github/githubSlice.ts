@@ -65,7 +65,6 @@ export const githubSlice = createSlice({
         state.status = "loading";
       })
       .addCase(getAuthSecondStepAsync.fulfilled, (state, action) => {
-        console.log('auth second step')
         state.status = "idle";
         state.accessToken = action.payload;
       })
