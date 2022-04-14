@@ -1,10 +1,8 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
-import counterReducer from '../features/counter/counterSlice';
 import githubReducer from '../features/github/githubSlice';
 
 export const store = configureStore({
   reducer: {
-    counter: counterReducer,
     github: githubReducer
   },
 });
