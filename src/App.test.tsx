@@ -22,8 +22,8 @@ describe("App", () => {
     if (root) root.remove();
     root = null;
   });
-  test("renders learn react link", () => {
-    act(() => {
+  test("renders learn react link", async () => {
+    await act(async () => {
       if (root) {
         reactDomRoot = ReactDOM.createRoot(root);
         reactDomRoot.render(
@@ -33,6 +33,7 @@ describe("App", () => {
         );
       }
     });
-    expect(screen.getByText("Learn")).toBeDefined();
+
+    expect(screen.getByAltText("logo")).toBeDefined();
   });
 });

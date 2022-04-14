@@ -7,7 +7,8 @@ export const CONSTANTS = {
   },
   domains: {
     github: "https://www.github.com",
-    proxy: "http://localhost:5050",
+    authorization: "http://localhost:5050",
+    resources: "http://localhost:5051",
   },
   uris: {
     access_token: "login/oauth/access_token",
@@ -18,26 +19,28 @@ export const CONSTANTS = {
 
 const authSecondStep = (code: string) => {
   const data = `code=${code}&client_id=${CONSTANTS.secrets.client_id}&client_secret=${CONSTANTS.secrets.client_secret}`;
-  return fetch(`${CONSTANTS.domains.proxy}/${CONSTANTS.uris.access_token}`, {
+  
+  return fetch(`${CONSTANTS.domains.authorization}/${CONSTANTS.uris.access_token}`, {
     headers: {
       accept: "application/json",
     },
     method: "POST",
     body: new URLSearchParams(data),
     mode: "cors",
-  });
+  }).then(response => response.json());
+  
 };
 
-const getUser = (token: string) => {
+const getUser = (accessToken: string) => {
   //  return fetch(`${CONSTANTS.uris.proxy}/user`, {
-  return fetch(`${CONSTANTS.domains.proxy}/${CONSTANTS.uris.user}`, {
+  return fetch(`${CONSTANTS.domains.resources}/${CONSTANTS.uris.user}`, {
     headers: {
       accept: "application/json",
-      Authorization: `token ${token}`,
+      Authorization: `token ${accessToken}`,
     },
     method: "GET",
     mode: "cors",
-  });
+  }).then(response => response.json());
 };
 
 const getLoginUrl = (state: string) => {
