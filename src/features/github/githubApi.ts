@@ -2,7 +2,7 @@ export const CONSTANTS = {
   secrets: {
     client_id: "1283deb25830a5416402",
     client_secret: "d30439d48ee48df60e651f0e6a490c0cd94e7500",
-    redirect_uri: "http://localhost:3000/user",
+    redirect_uri: "http://localhost:3000/",
     scope: "user",
   },
   domains: {
