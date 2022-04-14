@@ -5,14 +5,14 @@ import {
   getAuthSecondStepAsync,
   getUserAsync,
 } from "../githubSlice";
+import {Link} from 'react-router-dom'
 import styles from "./Home.module.css";
 
 export function Home() {
   const { loginUrl, status, accessToken, user } = useAppSelector(selectGithub);
   const dispatch = useAppDispatch();
-  //  const [incrementAmount, setIncrementAmount] = useState('2');
+  // to check on callback
   let state = sessionStorage.getItem("state");
-  // this parameter controls if we are already trying to login
 
   // private "method"
   const dispatchToLogin = () => {
@@ -48,7 +48,6 @@ export function Home() {
   }) => {
     dispatch(getAuthSecondStepAsync(parameters));
   };
-  
 
   if (status === "idle") {
     if (!loginUrl) {
@@ -59,15 +58,14 @@ export function Home() {
         dispatchToAccessToken(parameters);
       }
     } else {
-      dispatch(getUserAsync())
-
+      dispatch(getUserAsync());
     }
   }
 
   return (
     <div>
       <h1>Login page</h1>
-      <p>Welcome {user && user.name ? user.name : 'anonymous'}</p>
+      <p>Welcome {user && user.name ? user.name : "anonymous"}</p>
 
       <section className="login">
         {loginUrl ? (
@@ -76,6 +74,13 @@ export function Home() {
           ""
         )}
       </section>
+      {user ? (
+        <section className="menu">
+          <Link to="/user">User section</Link>
+        </section>
+      ) : (
+        ""
+      )}
     </div>
   );
 }
