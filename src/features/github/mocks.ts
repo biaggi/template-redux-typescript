@@ -1,4 +1,26 @@
 import { User, AccessToken } from "./githubTypes";
+import fetchMock from "jest-fetch-mock";
+
+export const getAuthServerMocks = () => {
+  //authorization server
+  fetchMock.mockIf(/^http?:\/\/localhost:5050.*$/, (req: Request) => {
+    return new Promise<string>((resolve) => {
+      resolve(JSON.stringify(accessTokenMock));
+    });
+  });
+};
+
+export const getResourceServerMocks = () => {
+  //authorization server
+  fetchMock.mockIf(/^http?:\/\/localhost:5051.*$/, (req: Request) => {
+    return new Promise<string>((resolve) => {
+      if (req.url.endsWith("/user")) {
+        console.log(req.url);
+        resolve(JSON.stringify(userMock));
+      }
+    });
+  });
+};
 
 export const accessTokenMock: AccessToken = {
   access_token: "gho_QwhFqX9yR04bpaNiEShTXKexample4XXcDF",
