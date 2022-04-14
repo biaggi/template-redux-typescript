@@ -1,7 +1,7 @@
 import React from "react";
 import "./index.css";
 import App from "./App";
-import { User } from "./features/github/pages/user/User";
+import { User } from "./features/pages/user/User";
 import { store } from "./app/store";
 import { Provider } from "react-redux";
 import * as serviceWorker from "./serviceWorker";
@@ -9,7 +9,7 @@ import { createRoot } from "react-dom/client";
 import { selectGithubUser } from "./features/github/githubSlice";
 import { Link, Routes, Route, BrowserRouter, Navigate } from "react-router-dom";
 import { useAppSelector } from "./app/hooks";
-import { Dashboard } from "./features/github/pages/dashboard/Dashboard";
+import { Dashboard } from "./features/pages/dashboard/Dashboard";
 const root = document.getElementById("root");
 
 const ProtectedRoute = ({ children }: { children: any }) => {

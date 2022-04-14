@@ -1,5 +1,5 @@
-import { useAppSelector } from "../../../../app/hooks";
-import { selectGithub } from "../../githubSlice";
+import { useAppSelector } from "../../../app/hooks";
+import { selectGithub } from "../../github/githubSlice";
 
 export function User() {
   const { user } = useAppSelector(selectGithub);

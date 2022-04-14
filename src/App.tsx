@@ -1,7 +1,5 @@
-import React from "react";
 import logo from "./logo.svg";
-import { Home } from "./features/github/pages/Home";
-import * as ReactDom from "react-dom";
+import { Home } from "./features/pages/Home";
 import "./App.css";
 
 function App() {

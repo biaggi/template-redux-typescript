@@ -1,10 +1,10 @@
-import { useAppSelector, useAppDispatch } from "../../../app/hooks";
+import { useAppSelector, useAppDispatch } from "../../app/hooks";
 import {
   getLoginUrlAsync,
   selectGithub,
   getAuthSecondStepAsync,
   getUserAsync,
-} from "../githubSlice";
+} from "../github/githubSlice";
 import {Link} from 'react-router-dom'
 import styles from "./Home.module.css";
 

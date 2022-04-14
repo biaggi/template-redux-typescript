@@ -1,11 +1,11 @@
 import ReactDOM from "react-dom/client";
 import { act } from "react-dom/test-utils";
-import { store } from "../../../app/store";
+import { store } from "../../app/store";
 import { Home } from "./Home";
 import { Provider } from "react-redux";
 import { screen } from "@testing-library/dom";
-import { setupMocks } from "../mocks";
-import { getAuthSecondStepAsync } from "../githubSlice";
+import { setupMocks } from "../github/mocks";
+import { getAuthSecondStepAsync } from "../github/githubSlice";
 
 let root: Element | null = null;
 let reactDomRoot: ReactDOM.Root | null = null;
