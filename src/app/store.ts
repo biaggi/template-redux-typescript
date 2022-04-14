@@ -1,9 +1,11 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import githubReducer from '../features/github/githubSlice';
+import githubReposReducer from '../features/github/githubRepositoriesSlice';
 
 export const store = configureStore({
   reducer: {
-    github: githubReducer
+    github: githubReducer,
+    repos: githubReposReducer
   },
 });
 

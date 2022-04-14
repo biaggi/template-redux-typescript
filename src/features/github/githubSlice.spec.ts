@@ -1,7 +1,5 @@
-import githubReducer, {
+import {
   getLoginUrlAsync,
-  GithubState,
-  initialState,
   getAuthSecondStepAsync,
   getUserAsync,
 } from "./githubSlice";
@@ -24,7 +22,7 @@ function setupFetchStub(data: any) {
 describe("github reducer", () => {
   afterAll(() => {
     fetchMock.resetMocks();
-  })
+  });
   it("should handle login url", () => {
     store.dispatch(getLoginUrlAsync("test")).then(() => {
       const state = store.getState();
@@ -43,20 +41,18 @@ describe("github reducer", () => {
       )
       .then(() => {
         const state = store.getState();
-        expect(JSON.stringify(state.github.accessToken)).toBe(JSON.stringify(accessTokenMock))
+        expect(JSON.stringify(state.github.accessToken)).toBe(
+          JSON.stringify(accessTokenMock)
+        );
         done();
       });
   });
   it("should handle an access_token to get a user", (done) => {
     setupMocks();
-    store
-      .dispatch(
-        getUserAsync()
-      )
-      .then(() => {
-        const state = store.getState();
-        expect(JSON.stringify(state.github.user)).toBe(JSON.stringify(userMock))
-        done();
-      });
+    store.dispatch(getUserAsync()).then(() => {
+      const state = store.getState();
+      expect(JSON.stringify(state.github.user)).toBe(JSON.stringify(userMock));
+      done();
+    });
   });
 });

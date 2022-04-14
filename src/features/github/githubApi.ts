@@ -1,4 +1,5 @@
-export const CONSTANTS = {
+// this is a security issue, should be in the proxy
+const CONSTANTS = {
   secrets: {
     client_id: "1283deb25830a5416402",
     client_secret: "d30439d48ee48df60e651f0e6a490c0cd94e7500",
@@ -14,10 +15,11 @@ export const CONSTANTS = {
     access_token: "login/oauth/access_token",
     authorize: "login/oauth/authorize",
     user: "user",
+    repositories: "user/repos"
   },
 };
 
-const authSecondStep = (code: string) => {
+const authSecondStep = async (code: string) => {
   const data = `code=${code}&client_id=${CONSTANTS.secrets.client_id}&client_secret=${CONSTANTS.secrets.client_secret}`;
   return fetch(`${CONSTANTS.domains.authorization}/${CONSTANTS.uris.access_token}`, {
     headers: {
@@ -30,9 +32,19 @@ const authSecondStep = (code: string) => {
   
 };
 
-const getUser = (accessToken: string) => {
-  //  return fetch(`${CONSTANTS.uris.proxy}/user`, {
+const getUser = async (accessToken: string) => {
   return fetch(`${CONSTANTS.domains.resources}/${CONSTANTS.uris.user}`, {
+    headers: {
+      accept: "application/json",
+      Authorization: `token ${accessToken}`,
+    },
+    method: "GET",
+    mode: "cors",
+  }).then(response => response.json());
+};
+
+const getRepositories = async (accessToken: string) => {
+  return fetch(`${CONSTANTS.domains.resources}/${CONSTANTS.uris.repositories}`, {
     headers: {
       accept: "application/json",
       Authorization: `token ${accessToken}`,
@@ -57,4 +69,4 @@ const getLoginUrl = (state: string) => {
       return `${CONSTANTS.domains.github}/${CONSTANTS.uris.authorize}${queryParameters}`
 };
 
-export { authSecondStep, getUser, getLoginUrl };
+export { authSecondStep, getUser, getLoginUrl, getRepositories };

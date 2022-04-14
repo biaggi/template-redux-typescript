@@ -4,11 +4,13 @@ import {
   selectGithub,
   getAuthSecondStepAsync,
   getUserAsync,
+  logout,
 } from "../github/githubSlice";
-import {Link} from 'react-router-dom'
-import styles from "./Home.module.css";
+import logo from "./logo.svg";
 
-export function Home() {
+import "./Home.css";
+
+export function Home(props: {}) {
   const { loginUrl, status, accessToken, user } = useAppSelector(selectGithub);
   const dispatch = useAppDispatch();
   // to check on callback
@@ -49,34 +51,55 @@ export function Home() {
     dispatch(getAuthSecondStepAsync(parameters));
   };
 
+  let navigateHome = false;
+  // login sequence, could be a thunk...
   if (status === "idle") {
-    if (!loginUrl) {
+    if (!loginUrl || (accessToken && accessToken.error)) {
       dispatchToLogin();
+      navigateHome = true;
     } else if (!accessToken) {
       const parameters = getQueryParams();
       if (parameters) {
         dispatchToAccessToken(parameters);
       }
     } else {
-      // github api is not jwt, so im emulating it this way
-      // in a jwt api here we would be decoding the received token
-      // to get the claims
-      dispatch(getUserAsync());
+      if (!user) {
+        // github api is not jwt, so im emulating it this way
+        // in a jwt api here we would be decoding the received token
+        // to get the claims
+        dispatch(getUserAsync());
+      }
     }
   }
 
-  return (
-    <div>
-      <h1>Login page</h1>
-      <p>Welcome {user && user.name ? user.name : "anonymous"}</p>
+  return navigateHome ? (
+    <div></div>
+  ) : (
+    <div className="Home">
+      <header className="Home-header">
+        <a href="/">
+          <img src={logo} className="Home-logo" alt="logo" />
+        </a>
+        <div>
+          <h1>Login page</h1>
+          <p>Welcome {user && user.name ? user.name : "anonymous"}</p>
 
-      <section className="login">
-        {loginUrl && !user ? (
-          <a href={loginUrl}>Please click here to login with github!</a>
-        ) : (
-          ""
-        )}
-      </section>
+          <section className="login">
+            {loginUrl && !user ? (
+              <a className="Home-link" href={loginUrl}>Please click here to login with github!</a>
+            ) : (
+              <button
+                onClick={(event) => {
+                  event?.preventDefault();
+                  dispatch(logout());
+                }}
+              >
+                Logout
+              </button>
+            )}
+          </section>
+        </div>
+      </header>
     </div>
   );
 }
