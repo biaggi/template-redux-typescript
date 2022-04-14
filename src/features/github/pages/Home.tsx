@@ -68,19 +68,12 @@ export function Home() {
       <p>Welcome {user && user.name ? user.name : "anonymous"}</p>
 
       <section className="login">
-        {loginUrl ? (
+        {loginUrl && !user ? (
           <a href={loginUrl}>Please click here to login with github!</a>
         ) : (
           ""
         )}
       </section>
-      {user ? (
-        <section className="menu">
-          <Link to="/user">User section</Link>
-        </section>
-      ) : (
-        ""
-      )}
     </div>
   );
 }
