@@ -58,6 +58,9 @@ export function Home() {
         dispatchToAccessToken(parameters);
       }
     } else {
+      // github api is not jwt, so im emulating it this way
+      // in a jwt api here we would be decoding the received token
+      // to get the claims
       dispatch(getUserAsync());
     }
   }
