@@ -1,17 +1,16 @@
 import ReactDOM from "react-dom/client";
 import { act } from "react-dom/test-utils";
 import { store } from "../../../app/store";
-import { Repositories } from "./Repositories";
+import { Swapi } from "./Swapi";
 import { Provider } from "react-redux";
 import { screen } from "@testing-library/dom";
 import { afterEachHook, beforeEachHook } from "../../../test/hooks";
 
 import { setupMocks } from "../../../test/mocks";
-import { setFakeAccessToken } from "../../github/githubSlice";
 let root: Element | null = null;
 let reactDomRoot: ReactDOM.Root | null = null;
 
-describe("User", () => {
+describe("Swapi", () => {
   beforeEach(() => {
     // setup a DOM element as a render target
     root = document.createElement("div");
@@ -20,23 +19,20 @@ describe("User", () => {
 
   //beforeEach(beforeEachHook(root));
   afterEach(afterEachHook(root, reactDomRoot));
-  test("User is rendering the repo list", async () => {
+  test("swapi renders a people list", async () => {
     setupMocks();
-    await act(async () => {
-      store.dispatch(setFakeAccessToken());
-    });
     await act(async () => {
       if (root) {
         reactDomRoot = ReactDOM.createRoot(root);
         reactDomRoot.render(
           <Provider store={store}>
-            <Repositories />
+            <Swapi />
           </Provider>
         );
       }
     });
     await act(async () => {
-      const bower = await screen.findByText("bower");
+      const bower = await screen.findByText("Luke Skywalker");
     });
   });
 });

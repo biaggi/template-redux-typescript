@@ -8,7 +8,7 @@ import { screen } from "@testing-library/dom";
 // let container: Element | null = null;
 let root: Element | null = null;
 let reactDomRoot: ReactDOM.Root | null = null;
-import { setupMocks } from "./features/github/mocks";
+import { setupMocks } from "./test/mocks";
 describe("App", () => {
   beforeEach(() => {
     // setup a DOM element as a render target

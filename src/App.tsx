@@ -4,7 +4,7 @@ import { Repositories } from "./features/pages/user/Repositories";
 import { RootState, store } from "./app/store";
 import { Provider } from "react-redux";
 import { Link, Routes, Route, BrowserRouter, Navigate } from "react-router-dom";
-import { Dashboard } from "./features/pages/dashboard/Dashboard";
+import { Swapi } from "./features/pages/swapi/Swapi";
 import { selectGithubUser } from "./features/github/githubSlice";
 import { useAppSelector } from "./app/hooks";
 import { useSelector } from "react-redux";
@@ -35,7 +35,7 @@ function App() {
         <nav className="App-navigation">
           <Link className="App-link" to="/">Home</Link>
           <Link className="App-link" to="/repositories">Repositories</Link>
-          <Link className="App-link" to="/dashboard">Dashboard</Link>
+          <Link className="App-link" to="/swapi">Swapi</Link>
         </nav>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -48,10 +48,10 @@ function App() {
             }
           />
           <Route
-            path="/dashboard"
+            path="/swapi"
             element={
               <ProtectedRoute>
-                <Dashboard />
+                <Swapi />
               </ProtectedRoute>
             }
           />

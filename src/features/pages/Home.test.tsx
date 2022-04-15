@@ -4,7 +4,7 @@ import { store } from "../../app/store";
 import { Home } from "./Home";
 import { Provider } from "react-redux";
 import { screen } from "@testing-library/dom";
-import { setupMocks } from "../github/mocks";
+import { setupMocks } from "../../test/mocks";
 import { getAuthSecondStepAsync } from "../github/githubSlice";
 
 let root: Element | null = null;

@@ -1,4 +1,6 @@
-import { User, AccessToken } from "./githubTypes";
+import { User, AccessToken } from "../features/github/githubTypes";
+import { PeopleType } from "../features/swapi/swapiTypes";
+
 import fetchMock from "jest-fetch-mock";
 
 export const setupMocks = () => {
@@ -21,6 +23,11 @@ export const setupMocks = () => {
     if (req.url.indexOf("user") > -1) {
       return new Promise<string>((resolve) => {
         resolve(JSON.stringify(userMock));
+      });
+    }
+    if (req.url.indexOf("people") > -1) {
+      return new Promise<string>((resolve) => {
+        resolve(JSON.stringify(peopleMock));
       });
     }
 
@@ -212,4 +219,36 @@ export const reposMock = () => {
       },
     },
   ]);
+};
+
+
+
+
+export const peopleMock: PeopleType = {
+  count: 82,
+  pages: 9,
+  next: "/api/people?page=2",
+  previous: null,
+  results: [
+    {
+      fields: {
+        edited: "2014-12-20T21:17:56.891Z",
+        name: "Luke Skywalker",
+        created: "2014-12-09T13:50:51.644Z",
+        gender: "male",
+        skin_color: "fair",
+        hair_color: "blond",
+        height: "172",
+        eye_color: "blue",
+        mass: "77",
+        homeworld: "/api/planets/1",
+        birth_year: "19BBY",
+        species: [],
+        films: [],
+        vehicles: ["/api/vehicles/14", "/api/vehicles/30"],
+        starships: ["/api/starships/12", "/api/starships/22"],
+        url: "/api/people/1",
+      },
+    }
+  ],
 };

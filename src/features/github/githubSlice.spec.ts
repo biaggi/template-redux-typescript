@@ -6,7 +6,7 @@ import {
 
 import { store } from "../../app/store";
 
-import { accessTokenMock, userMock, setupMocks } from "./mocks";
+import { accessTokenMock, userMock, setupMocks } from "../../test/mocks";
 
 function setupFetchStub(data: any) {
   return function fetchStub(

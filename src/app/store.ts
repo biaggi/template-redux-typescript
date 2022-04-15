@@ -1,11 +1,13 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import githubReducer from '../features/github/githubSlice';
 import githubReposReducer from '../features/github/githubRepositoriesSlice';
+import swapiReposReducer from '../features/swapi/swapiSlice';
 
 export const store = configureStore({
   reducer: {
     github: githubReducer,
-    repos: githubReposReducer
+    repos: githubReposReducer,
+    swapi: swapiReposReducer
   },
 });
 
