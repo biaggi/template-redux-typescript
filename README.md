@@ -1,6 +1,20 @@
 ## POC documentation
 
+### Pieces used
 This is a test on how to user react / redux with an api like github
+
+Im using here three servers:
+* github auth
+* github resources
+* swapi
+
+### setup the proxy
+
+To be able to use github, we need a proxy, in a production version, this "proxy" would also store the secrets in this poc secrets are stored in a constant in the front
+
+Just download the proxy repo and follow its instructions:
+
+https://github.com/biaggi/express-proxy
 
 As long as github seems that is not returning a jwt token that I can just decode, I've done an extra call to get the user info as part as the login process.
 
@@ -25,6 +39,8 @@ Watch Usage: Press w to show more.
 ```
 
 There are three slices, one per screen, two of them for github, (auth server/resource server) and another one for swapi (star wars api) in which i've also developed an extra "delete" button.
+
+
 
 
 ## Original react documentation: 
