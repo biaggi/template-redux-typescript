@@ -1,5 +1,5 @@
 import { useAppDispatch } from "../../../app/hooks";
-import { getPeopleAsync } from "../../swapi/swapiSlice";
+import { getPeopleAsync, deletePerson } from "../../swapi/swapiSlice";
 import { PersonType, PeopleType } from "../../swapi/swapiTypes";
 
 import { RootState } from "../../../app/store";
@@ -39,13 +39,15 @@ export function Swapi() {
             people?.results?.map((person: PersonType, i: number) => (
               <li className="People" key={i}>
                 <span>{person.fields.name}</span>
+                <button onClick={() => dispatch(deletePerson(i))}>
+                  Delete
+                </button>
               </li>
             ))
           ) : (
             <li>"No people found"</li>
           )}
         </ul>
-        
       </section>
     </div>
   );

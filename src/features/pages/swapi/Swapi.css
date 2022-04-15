@@ -1,3 +1,6 @@
-.Repo {
-    list-style: none;
+.People {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-right: 20px;
 }

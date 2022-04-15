@@ -20,9 +20,9 @@ export interface PersonType {
 }
 
 export interface PeopleType {
-  count: number;
-  pages: number;
-  next: string | null;
-  previous: string | null;
+  count?: number | undefined;
+  pages?: number;
+  next?: string | null;
+  previous?: string | null;
   results: PersonType[];
 }
