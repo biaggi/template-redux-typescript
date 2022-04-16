@@ -76,37 +76,34 @@ export const githubSlice = createSlice({
        * Creating an url
        */
       .addCase(getLoginUrlAsync.pending, (state) => {
-        state.status = "loading";
+        return {...state, status: 'loading'}
       })
       .addCase(getLoginUrlAsync.fulfilled, (state, action) => {
-        state.status = "idle";
-        state.loginUrl = action.payload;
+        return {...state, status: 'idle', loginUrl: action.payload}
       })
       /**
        * Getting an access token
        */
       .addCase(getAuthSecondStepAsync.pending, (state) => {
-        state.status = "loading";
+        return {...state, status: 'loading'}
       })
       .addCase(getAuthSecondStepAsync.fulfilled, (state, action) => {
-        state.status = "idle";
-        state.accessToken = action.payload;
+        return {...state, status: 'idle', accessToken: action.payload}
       })
       .addCase(getAuthSecondStepAsync.rejected, (state, action) => {
-        state.status = "failed";
+        return {...state, status: 'failed'}
       })
       /**
        * Getting an access token
        */
       .addCase(getUserAsync.pending, (state) => {
-        state.status = "loading";
+        return {...state, status: 'loading'}
       })
       .addCase(getUserAsync.fulfilled, (state, action) => {
-        state.status = "idle";
-        state.user = action.payload;
+        return {...state, status: 'idle', user: action.payload}
       })
       .addCase(getUserAsync.rejected, (state, action) => {
-        state.status = "failed";
+        return {...state, status: 'failed'}
       });
   },
 });

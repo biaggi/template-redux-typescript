@@ -42,14 +42,13 @@ export const githubReposSlice = createSlice({
        * Getting a repository list
        */
       .addCase(getRepositoriesAsync.pending, (state) => {
-        state.status = "loading";
+        return {...state, status: 'loading'}
       })
       .addCase(getRepositoriesAsync.fulfilled, (state, action) => {
-        state.status = "idle";
-        state.repos = action.payload;
+        return {...state, status: 'idle', repos: action.payload}
       })
       .addCase(getRepositoriesAsync.rejected, (state) => {
-        state.status = "failed";
+        return {...state, status: 'failed'}
       });
   },
 });

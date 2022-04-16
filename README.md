@@ -1,6 +1,7 @@
 ## POC documentation
 
 ### Pieces used
+
 This is a test on how to user react / redux with an api like github
 
 Im using here three servers:
@@ -8,7 +9,9 @@ Im using here three servers:
 * github resources
 * swapi
 
-### setup the proxy
+
+
+### Setup the proxy
 
 To be able to use github, we need a proxy, in a production version, this "proxy" would also store the secrets in this poc secrets are stored in a constant in the front
 
@@ -16,9 +19,13 @@ Just download the proxy repo and follow its instructions:
 
 https://github.com/biaggi/express-proxy
 
+### Login without jwt
 As long as github seems that is not returning a jwt token that I can just decode, I've done an extra call to get the user info as part as the login process.
 
-I've added tests and most of the code is covered:
+### Testing
+
+I've added tests and most of the code is covered, we are using mocks to test slices and there is a mock file to serve as base for the development:
+
 
 ```
  PASS  src/App.test.tsx
