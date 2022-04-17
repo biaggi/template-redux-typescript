@@ -2,7 +2,7 @@
 
 ### Pieces used
 
-This is a test on how to user react / redux with an api like github
+This is a test on how to user react / redux with an api like github although im beginning to think I should have implemented something like this other project: https://github.com/biaggi/angular-redux-ingreso-egreso (with firebase)
 
 Im using here three servers:
 * github auth
